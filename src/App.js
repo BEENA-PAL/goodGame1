@@ -50,21 +50,25 @@ const App = () => {
         </div>
       </div>
       <div className="pokemon-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-        {pokemons.map((pokemon) => (
-          <div
-            key={pokemon.id}
-            className="pokemon-card bg-pink-100 rounded-lg shadow-md p-4"
-          >
-            <img
-              className="w-full h-48 object-cover mb-4 rounded-md"
-              src={pokemon.sprites.front_default}
-              alt={pokemon.name}
-            />
-            <h3 className=" font-bold text-center text-3xl text-pink-900">
-              {pokemon.name}
-            </h3>
-          </div>
-        ))}
+        {pokemons.length === 0 ? (
+          <>Loading</>
+        ) : (
+          pokemons.map((pokemon) => (
+            <div
+              key={pokemon.id}
+              className="pokemon-card bg-pink-100 rounded-lg shadow-md p-4"
+            >
+              <img
+                className="w-full h-48 object-cover mb-4 rounded-md"
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
+              />
+              <h3 className=" font-bold text-center text-3xl text-pink-900">
+                {pokemon.name}
+              </h3>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
