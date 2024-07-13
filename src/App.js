@@ -8,6 +8,7 @@ const App = () => {
   const [pokemons, setPokemons] = useState([]);
   const [allPokemons, setAllPokemons] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +23,7 @@ const App = () => {
       );
       setAllPokemons(allPokemonResults);
       setPokemons(allPokemonResults.slice(0));
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -50,8 +52,10 @@ const App = () => {
         </div>
       </div>
       <div className="pokemon-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-        {pokemons.length === 0 ? (
-          <>Loading</>
+        {loading ? (
+          <div className="flex flex-col justify-center items-center w-full h-full">
+            <div className="spinner border-t-4 border-b-4 border-pink-900 rounded-full w-16 h-16 text-center"></div>
+          </div>
         ) : (
           pokemons.map((pokemon) => (
             <div
